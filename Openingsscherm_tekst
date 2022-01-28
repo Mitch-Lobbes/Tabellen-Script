@@ -1,0 +1,27 @@
+Wat zie je in onze tabellen?
+Voor elke vraag in het eerste tabblad 'DATA' zijn twee tabellen onder elkaar weergegeven.
+-         De eerste tabel geeft de percentages op de antwoorden weer.
+-         De tweede tabel geeft aan welke percentages significant van elkaar verschillen. Dit wordt per
+          verdieping aangegeven met de letters van de kolommen (A, B, C etc). Wanneer er in deze tabel
+          voor groep A bij het 2e antwoord een 'C' staat, betekent dat dit percentage significant
+          verschilt met het percentage van groep C.
+
+De ranking vragen worden op verschillende manieren in de tabellen weergegeven:
+-         Met een tabel die weergeeft hoe vaak de regeling op de 1e, 2e, 3e, etc. plek is gezet
+-         Een tabel die de gemiddelde ranking weergeeft per regeling
+
+Welke significantie berekening gebruiken we?
+Voor het berekenen van de significanties wordt gebruik gemaakt van een twee-zijdige z-test.
+Voor elke kruisvariabele wordt per antwoordcategorie de resultaten tussen de subgroepen getoetst
+met een 95% betrouwbaarheidsinterval.
+Bij de toetsing wordt gebruik gemaakt van een Bonverroni correctie. Deze corrigeert voor mogelijke
+toevallige significanties.
+
+
+
+
+
+
+
+
+

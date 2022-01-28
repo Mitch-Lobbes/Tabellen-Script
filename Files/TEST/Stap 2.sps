@@ -1,0 +1,331 @@
+﻿* Encoding: UTF-8.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* DEEL 3. TABELLEN MAKEN.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+*Pas hier de kruisvariabelen aan met Replace (als er meer dan 3 kruisvariabelen zijn) of door alle verwijzingen naar !KV te verwijderen.*
+* Bepaalde tabellen staan default uit, bijvoorbeeld frequenties. Deze kunnen worden aangezet door het * weg te halen.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+*Bij gewogen data CTRL+H [COUNT 'tekst' F40.0] voor [UCOUNT 'tekst' F40.0].
+*En vervang VALIDN met UVALIDN.
+
+*Let op: een &-teken in de bestandsmap kan ervoor zorgen dat het bestand niet goed ge�xporteerd wordt.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* NOMINALE VARIABELEN. Geen kruisvariabelen? Doe de volgende stappen: 
+1) Replace (ctrl+H) !LET !KV = !CONCAT('KV1 [C] + KV2 [C]')
+2) Replace (ctrl+H) + !KV
+3) Replace (ctrl+H) KV
+
+DEFINE TABEL (LIJST=!CHAREND("/"))
+!DO !i !IN (!LIJST)
+!LET !KV = !CONCAT('KV1 [C]+KV2[C]')
+
+***** Percentages.
+CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!i DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=LABEL 
+/TABLE !i [C][COLPCT.COUNT 'tekst' PCT40.0, TOTAAL[VALIDN 'tekst' F40.0]] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO 
+/CATEGORIES VARIABLES=!i ORDER=A EMPTY=INCLUDE MISSING=EXCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE 
+/TITLES TITLE=')TABLE' ' '  CORNER='Proporties (%)' ' '
+/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+***** Frequenties.
+*CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!i DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=NONE 
+/TABLE !i [C][COUNT 'tekst' F40.0] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO 
+/CATEGORIES VARIABLES=!i ORDER=A EMPTY=INCLUDE MISSING=INCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE 
+/TITLES CORNER='Frequenties' ' '
+/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+!DOEND
+!ENDDEFINE.
+TABEL LIJST = NV.
+
+* Alle tabellen naar Excel exporteren.
+OUTPUT EXPORT /CONTENTS EXPORT=VISIBLE /XLSX DOCUMENTFILE='MAP\5 Rapport\Tabellen Nominale variabelen.xlsx' 
+OPERATION=CREATEFILE LOCATION=LASTCOLUMN NOTESCAPTIONS=YES.
+OUTPUT CLOSE *.
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* (5-PUNTS) BEOORDELINGSSCHAAL. Deze syntax kan worden aangepast naar bijv. een 4- of 7-puntschaal.
+
+DEFINE TABEL (LIJST=!CHAREND("/"))
+!DO !i !IN (!LIJST)
+!LET !KV = !CONCAT('KV1 [C]+KV2[C]')
+!LET !X = !CONCAT(!i)
+!LET !Y = !CONCAT(!i,'_Top2')
+!LET !Z = !CONCAT(!i,'_Bot2')
+!LET !V = !CONCAT(!i,'_Score')
+!LET !W = !CONCAT(!i,'_POMP')
+APPLY DICTIONARY FROM * /SOURCE VARIABLES = !X /TARGET VARIABLES = !V /NEWVARS.
+APPLY DICTIONARY FROM * /SOURCE VARIABLES = !X /TARGET VARIABLES = !W /NEWVARS.
+VARIABLE LABELS !Y 'Top-2 score'.
+VARIABLE LABELS !Z 'Bottom-2 score'.
+VALUE LABELS !Y 0 'Niet-Top-2' 100 'Top-2'.
+VALUE LABELS !Z 0 'Niet-Bottom-2' 100 'Bottom-2'.
+
+***** Percentages.
+CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=50 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!X DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=LABEL 
+/TABLE !X [C][COLPCT.COUNT 'tekst' PCT40.0, TOTALS[VALIDN 'tekst' F40.0]] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO 
+/CATEGORIES VARIABLES=!X ORDER=A KEY=VALUE EMPTY=INCLUDE MISSING=EXCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES  TITLE=')TABLE' ' '   CORNER='Proporties (%)' ' '
+/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+***** Top/Bot-2 score (0 - 100%).
+CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=50 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!Y !Z DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=NONE 
+/TABLE !Y [S][MEAN 'Top-2' PCT40.0] + !Z [S][MEAN 'Bottom-2' PCT40.0, VALIDN '(N)' F40.0] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=YES 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES CORNER='' ' '
+/COMPARETEST TYPE=MEAN ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+***** Frequenties.
+*CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=50 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!X DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=NONE 
+/TABLE !X [C][COUNT 'tekst' F40.0] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO 
+/CATEGORIES VARIABLES=!X ORDER=A KEY=VALUE EMPTY=INCLUDE MISSING=EXCLUDE TOTAL=YES 
+LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES CORNER='Frequenties' ' '
+/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+***** Gemiddelde schaal (1 - 5) (inclusief titel).
+*CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=50 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!V DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=NONE 
+/TABLE !V [S][MEAN 'Gemiddelde' F40.1] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=YES 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES CORNER='' ' '.
+*/COMPARETEST TYPE=MEAN ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES 
+CATEGORIES=ALLVISIBLE MEANSVARIANCE=ALLCATS MERGE=NO.
+
+!DOEND
+!ENDDEFINE.
+TABEL LIJST = SV_5.
+
+* Alle tabellen naar Excel exporteren.
+OUTPUT EXPORT /CONTENTS EXPORT=VISIBLE /XLSX DOCUMENTFILE='MAP\5 Rapport\Tabellen Schaal variabelen (5-punts).xlsx' 
+OPERATION=CREATEFILE LOCATION=LASTCOLUMN NOTESCAPTIONS=YES.
+OUTPUT CLOSE *.
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* MEERKEUZEVRAGEN. Vul op de tweede regel het aantal meerkeuzevariabelen in.
+
+DEFINE !REP ()
+!DO !i = 1 !TO 3
+!LET !X = !CONCAT('$V',!i)
+!LET !KV = !CONCAT('KV1 [C]+KV2[C]')
+
+***** Percentages.
+CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!X DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=LABEL 
+/TABLE !X [C][COLPCT.COUNT 'tekst' PCT40.0,TOTALS[COUNT 'tekst' F40.0]] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO 
+/CATEGORIES VARIABLES=!X ORDER=D KEY=COUNT EMPTY=INCLUDE MISSING=EXCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES TITLE=')TABLE' ' '  CORNER='Proporties (%)' ' '
+/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+***** Frequenties.
+*CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!X DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=NONE 
+/TABLE !X [C][COUNT 'tekst' F40.0, TOTALS[COUNT 'tekst' F40.0]] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO 
+/CATEGORIES VARIABLES=!X ORDER=A KEY=COUNT EMPTY=INCLUDE MISSING=INCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES CORNER='Frequenties' ' '
+/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+!DOEND
+!ENDDEFINE.
+!REP.
+
+* Alle tabellen naar Excel exporteren.
+OUTPUT EXPORT /CONTENTS EXPORT=VISIBLE /XLSX DOCUMENTFILE='MAP\5 Rapport\Tabellen Meerkeuze variabelen.xlsx' 
+OPERATION=CREATEFILE LOCATION=LASTCOLUMN NOTESCAPTIONS=YES.
+OUTPUT CLOSE *.
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* RAPPORTCIJFERS.
+
+DEFINE TABEL (LIJST=!CHAREND("/"))
+!DO !i !IN (!LIJST)
+!LET !KV = !CONCAT('KV1 [C]+KV2[C]')
+!LET !X = !CONCAT(!i)
+!LET !Y = !CONCAT(!i,'_classificatie')
+!LET !Z = !CONCAT(!i, '_gemiddelde')
+RECODE !X (-99=-99) (-98=-98) (1 thru 5=1) (6 thru 7=2) (8 thru 10=3) INTO !Y.
+RECODE !X (-99=-99) (-98=-98) (11=-98) (1=1) (2=2) (3=3) (4=4) (5=5) (6=6) (7=7) (8=8) (9=9) (10=10) INTO !Z.
+EXECUTE.
+APPLY DICTIONARY FROM * /SOURCE VARIABLES = !X /TARGET VARIABLES = !Y /NEWVARS.
+FORMATS !Y (F8.0).
+VARIABLE LEVEL !Y (NOMINAL).
+MISSING VALUES !Y (-99, -98).
+MISSING VALUES !Z (-99, -98).
+VALUE LABELS !Y 1 'Onvoldoende (5 of lager)' 2 'Voldoende (6 of 7)' 3 'Goed (8 of hoger)' -99 '(geen antwoord gegeven)'.
+
+***** Verdeling op onvoldoende, voldoende en goed.
+CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!Y DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=LABEL
+/TABLE !Y [C][COLPCT.COUNT 'tekst' PCT40.0,  TOTALS[COUNT 'tekst' F40.0]] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO
+/CATEGORIES VARIABLES=!Y ORDER=A KEY=VALUE EMPTY=INCLUDE MISSING=EXCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE 
+/TITLES TITLE=')TABLE' ' '  CORNER='Proporties (%)' ' '.
+*/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+***** Gemiddelde schaal (1 - 10).
+ * CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!Z DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=NONE 
+/TABLE !Z [S][MEAN 'Gemiddelde' F40.1, VALIDN '(N)' F40.0] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=YES
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES CORNER='Rapportcijfer (1 - 10)' ' '
+/COMPARETEST TYPE=MEAN ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+***** Percentages.
+ * CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!X DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=NONE 
+/TABLE !X [C][COLPCT.COUNT 'tekst' PCT40.0, TOTALS[UCOUNT 'tekst' F40.0]] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO
+/CATEGORIES VARIABLES=!X ORDER=A KEY=VALUE EMPTY=INCLUDE MISSING=EXCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES CORNER='Proporties (%)' ' '.
+*/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+***** Frequenties.
+*CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!X DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=NONE 
+/TABLE !X [C][COUNT 'tekst' F40.0, TOTALS[COUNT 'tekst' F40.0]] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO
+/CATEGORIES VARIABLES=!X ORDER=A KEY=VALUE EMPTY=INCLUDE MISSING=INCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES CORNER='Frequenties' ' '.
+*/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+!DOEND
+!ENDDEFINE.
+TABEL LIJST = RC.
+
+* Alle tabellen naar Excel exporteren.
+OUTPUT EXPORT /CONTENTS EXPORT=VISIBLE /XLSX DOCUMENTFILE='MAP\5 Rapport\Tabellen Rapportcijfer variabelen.xlsx' 
+OPERATION=CREATEFILE LOCATION=LASTCOLUMN NOTESCAPTIONS=YES.
+OUTPUT CLOSE *.
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+*NPS.Vul op de tweede regel het aantal NPS variabelen in.
+
+DEFINE !REP ()
+!DO !i = 1 !TO 1 /* geef het aantal NPS variabelen */
+!LET !KV = !CONCAT('KV1 [C]+KV2[C]')
+!LET !X = !CONCAT('NPS',!i)
+!LET !Y = !CONCAT('NPS',!i,'_classificatie')
+!LET !N = !CONCAT('NPS',!i,'_N')
+AGGREGATE /OUTFILE=* MODE=ADDVARIABLES OVERWRITEVARS=YES /BREAK= /!N=NU(!X).
+DO IF (!N GT 0). /* NPS berekenen wanneer N > 0 */
+RECODE !X (-99=-99) (1 thru 7=1) (8 thru 9=2) (10 thru 11=3) INTO !Y.
+END IF.
+EXECUTE.
+APPLY DICTIONARY FROM * /SOURCE VARIABLES = !X /TARGET VARIABLES = !Y /NEWVARS.
+FORMATS !Y (F8.0).
+VARIABLE LEVEL !Y (NOMINAL).
+MISSING VALUES !Y (-99).
+VALUE LABELS !Y 1 'Detractor' 2 'Passive' 3 'Promotor' -99 '(geen antwoord gegeven)'.
+
+***** NPS en percentages gecategoriseerd.
+CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!Y DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=LABEL 
+/PCOMPUTE &cat1 = EXPR([3] - [1])
+/PPROPERTIES &cat1 LABEL = "NPS" FORMAT=COLPCT.COUNT F40.0 HIDESOURCECATS=NO
+/TABLE !Y [C][COLPCT.COUNT 'tekst' PCT40.0, TOTALS[COUNT 'tekst' F40.0]] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO
+/CATEGORIES VARIABLES=!Y [3, 2, 1, &cat1] EMPTY=INCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES TITLE=')TABLE' ' '  CORNER='Net Promotor Score' '(-100 - 100)'
+/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+***** Frequenties gecategoriseerd.
+*CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!Y DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=NONE 
+/TABLE !Y [C][COUNT '' F40.0] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=YES 
+/CATEGORIES VARIABLES=!Y ORDER=A MISSING=INCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES CORNER='Frequenties' ' '
+/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+***** Percentages.
+*CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!X DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=NONE 
+/TABLE !X [C][COLPCT.COUNT 'tekst' PCT40.0] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO
+/CATEGORIES VARIABLES=!X ORDER=A KEY=VALUE EMPTY=INCLUDE MISSING=EXCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES CORNER='Proporties (%)' ' '
+/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+***** Frequenties.
+*CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+/VLABELS VARIABLES=!X DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=NONE 
+/TABLE !X [C][COUNT 'tekst' F40.0, TOTALS[COUNT 'tekst' F40.0]] BY Totaal [C] + !KV 
+/SLABELS POSITION=ROW VISIBLE=NO
+/CATEGORIES VARIABLES=!X ORDER=A KEY=VALUE EMPTY=INCLUDE MISSING=INCLUDE TOTAL=YES LABEL='(N)' POSITION=AFTER 
+/CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+/TITLES CORNER='Frequenties' ' '.
+*/COMPARETEST TYPE=PROP ALPHA=0.05 ADJUST=BONFERRONI ORIGIN=COLUMN INCLUDEMRSETS=YES.
+
+!DOEND
+!ENDDEFINE.
+!REP.
+
+* Alle tabellen naar Excel exporteren.
+OUTPUT EXPORT /CONTENTS EXPORT=VISIBLE /XLSX DOCUMENTFILE='MAP\5 Rapport\Tabellen NPS variabelen.xlsx' 
+OPERATION=CREATEFILE LOCATION=LASTCOLUMN NOTESCAPTIONS=YES.
+OUTPUT CLOSE *.
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* Missings en NULL weghalen.
+RECODE OV ('-99'=' ') ('NULL'=' ') ('n.v.t.' = ' ') ('nvt' = ' ').
+
+* Tabellen open variabelen in Excel.
+SAVE TRANSLATE OUTFILE='MAP\5 Rapport\Tabellen Open variabelen.xlsx' 
+  /TYPE=XLS
+  /VERSION=12
+  /MAP
+  /REPLACE
+  /FIELDNAMES /value=labels
+  /CELLS=LABELS
+  /KEEP= KV OV.
+OUTPUT CLOSE *.
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* GEMIDDELDEN.
+
+ * Tabellen voor gemiddelden.
+DEFINE TABEL (LIJST=!CHAREND("/"))
+!LET !KV = !CONCAT('KV1 [C]+KV2[C]')
+
+!DO !i !IN (!LIJST)
+CTABLES /FORMAT EMPTY=ZERO MISSING='-' MINCOLWIDTH=60 MAXCOLWIDTH=60 UNITS=POINTS 
+      /VLABELS VARIABLES=!i DISPLAY=NONE /VLABELS VARIABLES=Totaal KV DISPLAY=LABEL 
+         /TABLE !i [S][MEAN 'Gemiddelde' F40.1, VALIDN '(N)' F40.0] BY Totaal [C] + !KV 
+         /SLABELS POSITION=ROW VISIBLE=YES
+         /CATEGORIES VARIABLES=Totaal KV ORDER=A KEY=VALUE EMPTY=INCLUDE
+      /TITLES TITLE=')TABLE' ' '  CORNER='Gemiddelde' ' '.
+!DOEND
+!ENDDEFINE.
+TABEL LIJST=GEM.
+
+ * Alle tabellen naar Excel exporteren.
+OUTPUT EXPORT /CONTENTS EXPORT=VISIBLE /XLSX DOCUMENTFILE='MAP\5 Rapport\Tabellen Aanvullende variabelen.xlsx' 
+OPERATION=CREATEFILE LOCATION=LASTCOLUMN NOTESCAPTIONS=YES.
+OUTPUT CLOSE *.
+
+
