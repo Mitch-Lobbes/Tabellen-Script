@@ -189,3 +189,38 @@ class UI:
         self._root.mainloop()
 
         return event_list
+
+    def name_kv(self):
+
+        names = []
+
+        y = 50
+
+        entries = [Entry(self._root) for _ in range(0, self._kvs)]
+
+        for i, entry in enumerate(entries):
+            x = 300
+            my_label = Label(self._root, text=f"KV{i + 1}", bg='#46b6df', fg='white', font="Trebuchet")
+            my_label.place(x=x, y=y)
+
+            x = x + 40
+
+            entry.place(x=x, y=y)
+
+            y = y + 30
+
+        def save_names():
+            for entry in entries:
+                names.append(entry.get())
+            self._destroy_widgets()
+
+
+        my_button = Button(self._root, text="Bevestig Naam KV's", command=save_names, bg="#004771",
+                            fg="white", bd="5", font="Trebuchet", activebackground="#46b6df").place(x=340, y=500)
+
+        self._root.mainloop()
+
+        return names
+
+
+

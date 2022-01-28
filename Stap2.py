@@ -10,6 +10,7 @@ class Step2:
         self._titles = []
         self._kvs = []
         self._open_questions = []
+        self._kv_names = []
         self._directory = ""
 
         self._data = pd.DataFrame
@@ -35,13 +36,14 @@ class Step2:
 
         self._numeric_alpha_dict = {value: key for (key, value) in self._alpha_numeric_dict.items()}
 
-    def run(self, dfs: list, names: list, kvs: list, path_name: str, open_list: list, data: pd.DataFrame):
+    def run(self, dfs: list, names: list, kvs: list, path_name: str, open_list: list, data: pd.DataFrame, kv_names: list):
         self._dataframe_list = dfs
         self._titles = names
         self._kvs = kvs
         self._directory = path_name
         self._open_questions = open_list
         self._data = data
+        self._kv_names = kv_names
 
         output_path = f"{self._directory}\Tabellenboek.xlsx"
         self._writer = pd.ExcelWriter(output_path, engine='xlsxwriter')
@@ -89,23 +91,30 @@ class Step2:
             # All Formats
             title_format = self._workbook.add_format({'bold': True, 'font_size': 9})
             merge_format = self._workbook.add_format({'bold': False, 'border': 1, 'font_size': 9, 'color': 'white',
-                                                      'align': 'center', 'valign': 'vcenter', 'fg_color': '#46b6df'})
+                                                      'align': 'center', 'valign': 'vcenter', 'fg_color': '#537f8a'})
 
             header_format = self._workbook.add_format({'bold': False, 'font_size': 9, 'color': 'white',
-                                                       'fg_color': '#46b6df', 'border': 1, 'top': 5})
+                                                       'fg_color': '#76b5c5', 'border': 1, 'top': 5})
             header_format2 = self._workbook.add_format({'bold': False, 'font_size': 9, 'color': 'white',
-                                                        'fg_color': '#46b6df', 'border': 1, 'top': 5, 'right': 5})
+                                                        'fg_color': '#76b5c5', 'border': 1, 'top': 5, 'right': 5})
 
             hyperlink_format = self._workbook.add_format({'color': '#0563C1', 'underline': True})
 
-            bottom_format2 = self._workbook.add_format({'right': 1, 'bottom': 5, 'font_size': 9})
+            bottom_format2 = self._workbook.add_format({'right': 1, 'bottom': 5, 'font_size': 9, 'fg_color': '#D9D9D9'})
+
             bottom_format2.set_align('left')
+            bottom_format2.set_top(6)
+            bottom_format2.set_top_color('red')
 
-            bottom_format22 = self._workbook.add_format({'right': 1, 'bottom': 5, 'font_size': 9})
+            bottom_format22 = self._workbook.add_format({'right': 1, 'bottom': 5, 'font_size': 9, 'fg_color': '#D9D9D9'})
             bottom_format22.set_align('Center')
+            bottom_format22.set_top(6)
+            bottom_format22.set_top_color('red')
 
-            bottom_fmt2 = self._workbook.add_format({'bottom': 5, 'right': 5, 'font_size': 9})
+            bottom_fmt2 = self._workbook.add_format({'bottom': 5, 'right': 5, 'font_size': 9, 'fg_color': '#D9D9D9'})
             bottom_fmt2.set_align('Center')
+            bottom_fmt2.set_top(6)
+            bottom_fmt2.set_top_color('red')
 
             tekst_begin_fmt = self._workbook.add_format({'right': 1, 'font_size': 9})
             tekst_begin_fmt.set_align('left')
@@ -122,10 +131,8 @@ class Step2:
             bottom_fmt3 = self._workbook.add_format({'right': 5, 'font_size': 9})
             bottom_fmt3.set_align('Center')
 
-
             self._data_tab.set_column(0, 0, 30)
-            self._data_tab.set_column(2, 20, 12)
-
+            self._data_tab.set_column(2, 20, 13)
 
             # Start Loop
             for i in range(len(self._dataframe_list)):
@@ -141,7 +148,7 @@ class Step2:
                     # Write Question Title
                     self._data_tab.write(self._title_row, 0, self._titles[i], title_format)
 
-                    for kv in self._kvs:
+                    for k, kv in enumerate(self._kvs):
 
                         # Define Ending Cell of Crossings
                         kv_cell_end = self._numeric_alpha_dict[self._alpha_numeric_dict[kv_cell_begin] +
@@ -149,7 +156,7 @@ class Step2:
 
                         # Merge Crossing Title
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
-                        self._data_tab.merge_range(merge, self._syntax[kv].vraagtekst, merge_format)
+                        self._data_tab.merge_range(merge, self._kv_names[k], merge_format)
 
                         kv_cell_begin = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden)]
@@ -200,7 +207,7 @@ class Step2:
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
-                        self._data_tab.merge_range(merge, self._syntax[kv].vraagtekst, merge_format)
+                        self._data_tab.merge_range(merge, self._kv_names[k], merge_format)
                         kv_cell_begin = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden)]
 
@@ -248,7 +255,7 @@ class Step2:
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
-                        self._data_tab.merge_range(merge, self._syntax[kv].vraagtekst, merge_format)
+                        self._data_tab.merge_range(merge, self._kv_names[k], merge_format)
                         kv_cell_begin = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden)]
 
@@ -302,7 +309,7 @@ class Step2:
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
-                        self._data_tab.merge_range(merge, self._syntax[kv].vraagtekst, merge_format)
+                        self._data_tab.merge_range(merge, self._kv_names[k], merge_format)
                         kv_cell_begin = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden)]
 
@@ -348,7 +355,7 @@ class Step2:
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
-                        self._data_tab.merge_range(merge, self._syntax[kv].vraagtekst, merge_format)
+                        self._data_tab.merge_range(merge, self._kv_names[k], merge_format)
                         kv_cell_begin = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden)]
 
@@ -391,7 +398,7 @@ class Step2:
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
-                        self._data_tab.merge_range(merge, self._syntax[kv].vraagtekst, merge_format)
+                        self._data_tab.merge_range(merge, self._kv_names[k], merge_format)
                         kv_cell_begin = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden)]
 
@@ -436,7 +443,7 @@ class Step2:
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
-                        self._data_tab.merge_range(merge, self._syntax[kv].vraagtekst, merge_format)
+                        self._data_tab.merge_range(merge, self._kv_names[k], merge_format)
                         kv_cell_begin = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden)]
 
