@@ -21,6 +21,8 @@ import re
 class Main:
     pd.set_option('display.max_columns', 500)
 
+    # Create new executable through: pyinstaller --onefile -w Main.py
+
     def __init__(self):
 
         # Class Variables
