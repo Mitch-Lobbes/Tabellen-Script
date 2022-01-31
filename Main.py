@@ -21,6 +21,8 @@ import re
 class Main:
     pd.set_option('display.max_columns', 500)
 
+    # Create new executable through: pyinstaller --onefile -w Main.py
+
     def __init__(self):
 
         # Class Variables
@@ -48,6 +50,7 @@ class Main:
         self._rejections = list()
         self._open_questions = list()
         self._kvs = list()
+        self._kvs_names = list()
         self._titles = list()
         self._dataframe_list = list()
         self._top2_bot2s = list()
@@ -82,6 +85,8 @@ class Main:
 
         self._number_kvs = self._UI.ask_for_kv()
         self._kvs = self._UI.specify_kv(self._data.columns)
+        self._kvs_names = self._UI.name_kv()
+
         # self._kvs = ['V1', 'V2']
 
         for kv in self._kvs:
@@ -93,7 +98,7 @@ class Main:
 
         self._create_tables()
         self._step2.run(dfs=self._dataframe_list, names=self._titles, kvs=self._kvs, path_name=self._directory,
-                        open_list=self._open_questions, data=self._data)
+                        open_list=self._open_questions, data=self._data, kv_names=self._kvs_names)
 
     def _retrieve_files(self) -> None:
         files = os.listdir(self._directory)
