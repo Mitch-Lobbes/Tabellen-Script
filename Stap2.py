@@ -203,7 +203,7 @@ class Step2:
                 elif question_type == "SIG":
                     self._data_tab.write(self._title_row, 0, self._titles[i], title_format)
 
-                    for kv in self._kvs:
+                    for k, kv in enumerate(self._kvs):
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
@@ -251,7 +251,7 @@ class Step2:
 
                     self._data_tab.write(self._title_row, 0, self._titles[i], title_format)
 
-                    for kv in self._kvs:
+                    for k, kv in enumerate(self._kvs):
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
@@ -305,7 +305,7 @@ class Step2:
 
                     self._data_tab.write(self._title_row, 0, self._titles[i], title_format)
 
-                    for kv in self._kvs:
+                    for k, kv in enumerate(self._kvs):
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
@@ -351,7 +351,7 @@ class Step2:
 
                     self._data_tab.write(self._title_row, 0, self._titles[i], title_format)
 
-                    for kv in self._kvs:
+                    for k, kv in enumerate(self._kvs):
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
@@ -394,7 +394,7 @@ class Step2:
 
                     self._data_tab.write(self._title_row, 0, self._titles[i], title_format)
 
-                    for kv in self._kvs:
+                    for k, kv in enumerate(self._kvs):
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
@@ -439,7 +439,7 @@ class Step2:
 
                     self._data_tab.write(self._title_row, 0, self._titles[i], title_format)
 
-                    for kv in self._kvs:
+                    for k, kv in enumerate(self._kvs):
                         kv_cell_end = self._numeric_alpha_dict[
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden) - 1]
                         merge = kv_cell_begin + str(self._df_row) + ":" + kv_cell_end + str(self._df_row)
