@@ -38,7 +38,14 @@ class UI:
             self._directory = input_box.get()
             self._destroy_widgets()
 
-        my_button = Button(self._root, text="Fill in the path name ", command=my_click)
+        #my_button = Button(self._root, text="Fill in the path name ", command=my_click)
+        my_button = Button(self._root, text="Bevestig Bestandsnaam",
+                           command=my_click,
+                           bg='#1fbcee',
+                           fg='white',
+                           bd='0',
+                           font=('Trebuchet', 20),
+                           activebackground='#46b6df')
         my_button.pack()
 
         self._root.mainloop()
@@ -61,10 +68,11 @@ class UI:
             self._destroy_widgets()
 
         my_label = Label(self._root, text="Wil je een data check uitvoeren over jouw data?",
-                         bg='#46b6df',
+                         bg='#1fbcee',
                          fg='white',
                          font='Trebuchet')
-        my_label.place(x=240, y=100)
+        #my_label.place(x=240, y=100)
+        my_label.pack(ipadx=10, ipady=100)
 
         my_button = Button(self._root, text="Ja, ik wil wel een data check uitvoeren",
                            command=my_click1,
@@ -74,7 +82,8 @@ class UI:
                            font='Trebuchet',
                            activebackground='#46b6df')
 
-        my_button.place(x=10, y=200)
+        #my_button.place(x=10, y=200)
+        my_button.pack(side=LEFT, expand=True)
 
         my_button2 = Button(self._root, text="Nee ik wil geen data check uitvoeren",
                             command=my_click2,
@@ -83,7 +92,8 @@ class UI:
                             bd='5',
                             font='Trebuchet',
                             activebackground='#46b6df')
-        my_button2.place(x=520, y=200)
+        #my_button2.place(x=520, y=200)
+        my_button2.pack(side=RIGHT, expand=True)
 
         self._root.mainloop()
 
@@ -95,8 +105,11 @@ class UI:
 
         for index, value in enumerate(schaalnummers):
             result[value] = IntVar()
-            Checkbutton(self._root, text=value, variable=result[value], bg='#46b6df',fg='black').grid(row=row,
-                                                                                                      column=column)
+            Checkbutton(self._root, text=value,
+                        font="Trebuchet",
+                        variable=result[value],
+                        bg='#1fbcee', fg='white', selectcolor='#004771').grid(row=row, column=column)
+
             row = row + 1
 
             if index % 10 == 0 and index != 0:
@@ -105,6 +118,8 @@ class UI:
 
         my_button = Button(self._root, text="Bevestig Top2/Bot2", command=self._destroy_widgets, bg="#004771",
                            fg="white", bd="5", font="Trebuchet", activebackground="#46b6df").place(x=320, y=500)
+
+
 
         self._root.mainloop()
 
