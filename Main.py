@@ -63,7 +63,7 @@ class Main:
 
     def run(self) -> None:
         self._directory = self._UI.ask_path()
-        # self._directory = r"C:\Users\mlobbes\Documents\Tabellen Script\Files"
+        #self._directory = r"C:\Users\mlobbes\Documents\Tabellen Script\Files"
 
         self._retrieve_files()
 

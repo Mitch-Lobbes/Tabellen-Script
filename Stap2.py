@@ -75,7 +75,7 @@ class Step2:
 
         column_settings = []
         for j in self._kvs:
-            column_settings.append({'header': j + ":    " + self._syntax[j].vraagtekst})
+            column_settings.append({'header': j + ":    " + self._syntax[j].vraagtekst[1:150]})
             start_col_df = start_col_df + 1
             start_row_df = 0
             self._open_tab.write(start_row_df, start_col_df, self._syntax[j].vraagtekst)
@@ -88,7 +88,9 @@ class Step2:
                     self._open_tab.write(start_row_df, start_col_df, ' ')
                     start_row_df = start_row_df + 1
 
-        self._open_tab.add_table(0, 0, max_row, max_col - 1, {'columns': column_settings})
+        #self._open_tab.add_table(0, 0, max_row, max_col - 1, {'columns': column_settings})
+        self._open_tab.add_table(f'A1:{self._numeric_alpha_dict[max_col]}{max_row+1}', {'columns': column_settings})
+
 
     def _write_tables(self):
 

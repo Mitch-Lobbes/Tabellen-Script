@@ -29,9 +29,7 @@ class TopBot:
         self._data = data
         self._column = self._df.columns[0]
 
-        print(self._df)
         base = self._create_cross_tables()
-        print(base)
         new_data = self._sort_answers(df=base)
         self._dataframe_list.append((new_data, 'NV'))
 
