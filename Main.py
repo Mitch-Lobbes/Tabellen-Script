@@ -62,8 +62,8 @@ class Main:
         self._syntax = Vraag2.Vraag.syntax
 
     def run(self) -> None:
-        self._directory = self._UI.ask_path()
-        #self._directory = r"C:\Users\mlobbes\Documents\Tabellen Script\Files"
+        #self._directory = self._UI.ask_path()
+        self._directory = r"C:\Users\mlobbes\Documents\Tabellen Script\Files"
 
         self._retrieve_files()
 
@@ -72,16 +72,27 @@ class Main:
         self._data, self._rejections = self._dataprep.run(filename=self._data_file)
 
         # Ask for Data Check
-        data_check = self._UI.ask_for_data_check()
-        self._data = self._data.drop(self._rejections).reset_index(drop=True) if data_check is True else self._data
+        #data_check = self._UI.ask_for_data_check()
+        #self._data = self._data.drop(self._rejections).reset_index(drop=True) if data_check is True else self._data
 
         # Ask for Top2 Bot2
-        self._top2_bot2s = self._TB.ask_for_top_bot2(ui_call=self._UI)
-        self._top2_bot2s = self._TB.define_top_bot2(ui_call=self._UI, tb2=self._top2_bot2s)
-        self._TB.parse_top_bot2(tb2=self._top2_bot2s)
+        #self._top2_bot2s = self._TB.ask_for_top_bot2(ui_call=self._UI)
+        #self._top2_bot2s = self._TB.define_top_bot2(ui_call=self._UI, tb2=self._top2_bot2s)
+        #self._TB.parse_top_bot2(tb2=self._top2_bot2s)
 
         # Safe All Open Check
         self._open_questions = [k for k, v in self._syntax.items() if v.soort == 'OPEN']
+
+        print("Ik begin hier")
+
+        self._number_kvs = self._UI.ask_for_kv()
+        print(self._number_kvs)
+        self._kvs = self._UI.specify_kv(self._data.columns)
+        print(self._kvs)
+
+
+        raise SystemExit
+
 
         self._number_kvs = self._UI.ask_for_kv()
         self._kvs = self._UI.specify_kv(self._data.columns)

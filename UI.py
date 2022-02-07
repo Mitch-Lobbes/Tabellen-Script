@@ -160,13 +160,15 @@ class UI:
     def ask_for_kv(self) -> int:
 
         my_label = Label(self._root, text="Aantal Kruisvariabelen", bg='#46b6df', fg='white', font="Trebuchet")
-        my_label.place(x=170, y=50)
+        #my_label.place(x=170, y=50)
+        my_label.pack()
 
         def new_selection(event):
             self._kvs = int(event.widget.get())
 
         my_combobox = ttk.Combobox(self._root, values=list(range(0, 16)))
-        my_combobox.place(x=340, y=50)
+        #my_combobox.place(x=340, y=50)
+        my_combobox.pack()
         my_combobox.bind("<<ComboboxSelected>>", new_selection)
 
         my_button = Button(self._root, text="Bevestig Aantal KV's", command=self._destroy_widgets, bg="#004771",
@@ -190,7 +192,7 @@ class UI:
             my_label = Label(self._root, text=f"KV{i+1}", bg='#46b6df', fg='white', font="Trebuchet")
             my_label.place(x=x, y=y)
 
-            x = x + 40
+            x = x + 50
 
             my_combobox = ttk.Combobox(self._root, values=list(answers))
             my_combobox.place(x=x, y=y)
