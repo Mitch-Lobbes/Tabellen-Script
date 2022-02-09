@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from PIL import ImageTk, Image
 import Vraag2
+import numpy as np
 
 
 class UI:
@@ -159,7 +160,7 @@ class UI:
 
     def ask_for_kv(self) -> int:
 
-        my_label = Label(self._root, text="Aantal Kruisvariabelen", bg='#46b6df', fg='white', font="Trebuchet")
+        my_label = Label(self._root, text="Aantal Kruisvariabelen", bg='#1fbcee', fg='white', font="Trebuchet")
         #my_label.place(x=170, y=50)
         my_label.pack()
 
@@ -238,6 +239,65 @@ class UI:
         self._root.mainloop()
 
         return names
+
+    def show_categories(self, event):
+        current_x, current_y = 10, 75
+
+        if event.widget.get():
+            self._kv = event.widget.get()
+
+        answer_list = self._syntax[self._kv].antwoorden
+        Label(self._root, text=f"{'Categorieen:'}", bg='#1fbcee', fg='white', font="Trebuchet").place(x=current_x,
+                                                                                                      y=current_y)
+        current_y = current_y + 150
+
+        for k in self._temp_dict.keys():
+            self._temp_dict[k].place_forget()
+            self._temp_dict2[k].place_forget()
+
+        for an in answer_list:
+            self._temp_dict[an] = Label(self._root, text=f"{an}", bg='#1fbcee', fg='white', font="Trebuchet")
+            self._temp_dict2[an] = Entry(self._root, width=80)
+            if event.widget.get():
+                self._temp_dict[an].place(x=current_x, y=current_y)
+                self._temp_dict2[an].place(x=current_x+200, y=current_y)
+                current_y = current_y + 25
+
+            else:
+                self._temp_dict[an].place_forget()
+                self._temp_dict2[an].place_forget()
+
+    def do_something(self):
+        for k, v in self._temp_dict2.items():
+            if len(v.get()) == 0:
+                self._temp_dict2[k] = np.nan
+            else:
+                self._temp_dict2[k] = v.get()
+        self._destroy_widgets()
+
+    def specify_kv2(self, number: int, answers: list):
+
+        self._temp_dict = {}
+        self._temp_dict2 = {}
+        self._temp_dict3 = {}
+
+        x, y = 10, 50
+
+        my_label = Label(self._root, text=f"KV{number + 1}", bg='#1fbcee', fg='white', font="Trebuchet")
+        my_label.place(x=x, y=y)
+
+        x = x + 50
+
+        my_combobox = ttk.Combobox(self._root, values=list(answers))
+        my_combobox.place(x=x, y=y+5)
+        my_combobox.bind("<<ComboboxSelected>>", self.show_categories)
+
+        my_button = Button(self._root, text="Bevestig KV", command=self.do_something, bg="#004771",
+                           fg="white", bd="5", font="Trebuchet", activebackground="#46b6df").place(x=340, y=500)
+
+        self._root.mainloop()
+
+        return self._temp_dict2, self._kv
 
 
 

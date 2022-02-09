@@ -16,6 +16,7 @@ import Stap2
 import pandas as pd
 import os
 import re
+import numpy as np
 
 
 class Main:
@@ -49,7 +50,7 @@ class Main:
         self._background_vars = list()
         self._rejections = list()
         self._open_questions = list()
-        self._kvs = list()
+        self._kvs = []
         self._kvs_names = list()
         self._titles = list()
         self._dataframe_list = list()
@@ -87,9 +88,29 @@ class Main:
 
         self._number_kvs = self._UI.ask_for_kv()
         print(self._number_kvs)
-        self._kvs = self._UI.specify_kv(self._data.columns)
-        print(self._kvs)
+        #self._kvs = self._UI.specify_kv(self._data.columns)
+        #print(self._kvs)
 
+        for i in range(self._number_kvs):
+            temp_dict2, q = self._UI.specify_kv2(number=i, answers=self._data.columns)
+            new_name = f'{q}_KV'
+            self._kvs.append(new_name)
+
+            # for k, v in temp_dict2.items():
+            #     print(k, v)
+
+            # @ TODO ADD NEW COLUMN TO DATA WITH NEW CATEGORIES
+            self._data[new_name] = self._data[q].map(temp_dict2)
+            # print(self._data[q])
+            # print(self._data['category'])
+            # @ TODO ADD NEW KV TO SELF.SYNTAX DICTIONARY
+            Vraag2.Vraag(self._syntax[q].soort, new_name, self._syntax[q].vraagtekst, list(set(temp_dict2.values())))
+            # print(self._syntax[f'{q}_KV'].soort)
+            # print(self._syntax[f'{q}_KV'].label)
+            # print(self._syntax[f'{q}_KV'].vraagtekst)
+            # print(self._syntax[f'{q}_KV'].antwoorden)
+
+        print(*self._kvs)
 
         raise SystemExit
 
