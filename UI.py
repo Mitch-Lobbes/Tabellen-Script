@@ -257,10 +257,10 @@ class UI:
 
         for an in answer_list:
             self._temp_dict[an] = Label(self._root, text=f"{an}", bg='#1fbcee', fg='white', font="Trebuchet")
-            self._temp_dict2[an] = Entry(self._root, width=80)
+            self._temp_dict2[an] = Entry(self._root, width=40)
             if event.widget.get():
                 self._temp_dict[an].place(x=current_x, y=current_y)
-                self._temp_dict2[an].place(x=current_x+200, y=current_y)
+                self._temp_dict2[an].place(x=current_x+350, y=current_y)
                 current_y = current_y + 25
 
             else:
@@ -268,11 +268,15 @@ class UI:
                 self._temp_dict2[an].place_forget()
 
     def do_something(self):
-        for k, v in self._temp_dict2.items():
-            if len(v.get()) == 0:
-                self._temp_dict2[k] = np.nan
-            else:
-                self._temp_dict2[k] = v.get()
+
+        self._temp_dict2 = {key: val.get() for key, val in self._temp_dict2.items() if len(val.get()) != 0}
+
+
+        # for k, v in self._temp_dict2.items():
+        #     if len(v.get()) == 0:
+        #         del self._temp_dict2[k]
+        #     else:
+        #         self._temp_dict2[k] = v.get()
         self._destroy_widgets()
 
     def specify_kv2(self, number: int, answers: list):

@@ -63,8 +63,8 @@ class Main:
         self._syntax = Vraag2.Vraag.syntax
 
     def run(self) -> None:
-        #self._directory = self._UI.ask_path()
-        self._directory = r"C:\Users\mlobbes\Documents\Tabellen Script\Files"
+        self._directory = self._UI.ask_path()
+        #self._directory = r"C:\Users\mlobbes\Documents\Tabellen Script\Files"
 
         self._retrieve_files()
 
@@ -84,10 +84,9 @@ class Main:
         # Safe All Open Check
         self._open_questions = [k for k, v in self._syntax.items() if v.soort == 'OPEN']
 
-        print("Ik begin hier")
+        #print("Ik begin hier")
 
         self._number_kvs = self._UI.ask_for_kv()
-        print(self._number_kvs)
         #self._kvs = self._UI.specify_kv(self._data.columns)
         #print(self._kvs)
 
@@ -112,12 +111,11 @@ class Main:
 
         print(*self._kvs)
 
-        raise SystemExit
+        #self._kvs = self._UI.specify_kv(self._data.columns)
 
-
-        self._number_kvs = self._UI.ask_for_kv()
-        self._kvs = self._UI.specify_kv(self._data.columns)
         self._kvs_names = self._UI.name_kv()
+        print(*self._kvs_names)
+        #raise SystemExit
 
         # self._kvs = ['V1', 'V2']
 
