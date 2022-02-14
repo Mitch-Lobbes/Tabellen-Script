@@ -73,51 +73,26 @@ class Main:
         self._data, self._rejections = self._dataprep.run(filename=self._data_file)
 
         # Ask for Data Check
-        #data_check = self._UI.ask_for_data_check()
-        #self._data = self._data.drop(self._rejections).reset_index(drop=True) if data_check is True else self._data
+        data_check = self._UI.ask_for_data_check()
+        self._data = self._data.drop(self._rejections).reset_index(drop=True) if data_check is True else self._data
 
         # Ask for Top2 Bot2
-        #self._top2_bot2s = self._TB.ask_for_top_bot2(ui_call=self._UI)
-        #self._top2_bot2s = self._TB.define_top_bot2(ui_call=self._UI, tb2=self._top2_bot2s)
-        #self._TB.parse_top_bot2(tb2=self._top2_bot2s)
+        self._top2_bot2s = self._TB.ask_for_top_bot2(ui_call=self._UI)
+        self._top2_bot2s = self._TB.define_top_bot2(ui_call=self._UI, tb2=self._top2_bot2s)
+        self._TB.parse_top_bot2(tb2=self._top2_bot2s)
 
         # Safe All Open Check
         self._open_questions = [k for k, v in self._syntax.items() if v.soort == 'OPEN']
-
-        #print("Ik begin hier")
-
         self._number_kvs = self._UI.ask_for_kv()
-        #self._kvs = self._UI.specify_kv(self._data.columns)
-        #print(self._kvs)
 
         for i in range(self._number_kvs):
             temp_dict2, q = self._UI.specify_kv2(number=i, answers=self._data.columns)
             new_name = f'{q}_KV'
             self._kvs.append(new_name)
-
-            # for k, v in temp_dict2.items():
-            #     print(k, v)
-
-            # @ TODO ADD NEW COLUMN TO DATA WITH NEW CATEGORIES
             self._data[new_name] = self._data[q].map(temp_dict2)
-            # print(self._data[q])
-            # print(self._data['category'])
-            # @ TODO ADD NEW KV TO SELF.SYNTAX DICTIONARY
             Vraag2.Vraag(self._syntax[q].soort, new_name, self._syntax[q].vraagtekst, list(set(temp_dict2.values())))
-            # print(self._syntax[f'{q}_KV'].soort)
-            # print(self._syntax[f'{q}_KV'].label)
-            # print(self._syntax[f'{q}_KV'].vraagtekst)
-            # print(self._syntax[f'{q}_KV'].antwoorden)
-
-        print(*self._kvs)
-
-        #self._kvs = self._UI.specify_kv(self._data.columns)
 
         self._kvs_names = self._UI.name_kv()
-        print(*self._kvs_names)
-        #raise SystemExit
-
-        # self._kvs = ['V1', 'V2']
 
         for kv in self._kvs:
             for var in self._background_vars:
@@ -129,6 +104,8 @@ class Main:
         self._create_tables()
         self._step2.run(dfs=self._dataframe_list, names=self._titles, kvs=self._kvs, path_name=self._directory,
                         open_list=self._open_questions, data=self._data, kv_names=self._kvs_names)
+
+        print("Finished Creating Tabellenboek.xlsx")
 
     def _retrieve_files(self) -> None:
         files = os.listdir(self._directory)

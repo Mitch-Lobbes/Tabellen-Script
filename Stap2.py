@@ -169,7 +169,6 @@ class Step2:
                             self._alpha_numeric_dict[kv_cell_begin] + len(self._syntax[kv].antwoorden)]
 
                     # Write Column Titles
-                    print(self._dataframe_list[i][0].columns[:-1])
                     for element in enumerate(self._dataframe_list[i][0].columns[:-1]):
                         self._data_tab.write(self._df_row, element[0], self._dataframe_list[i][0].columns[element[0]], header_format)
                     self._data_tab.write(self._df_row, len(self._dataframe_list[i][0].columns) - 1, self._dataframe_list[i][0].columns[-1], header_format2)
