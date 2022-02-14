@@ -3,31 +3,16 @@
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\pkg_resources\\__init__.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.requirements',
+  ('pkg_resources._vendor.packaging.__about__',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
-   'PYMODULE'),
-  ('typing',
-   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\typing.py',
-   'PYMODULE'),
-  ('contextlib',
-   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\contextlib.py',
-   'PYMODULE'),
-  ('urllib.parse',
-   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\urllib\\parse.py',
-   'PYMODULE'),
-  ('urllib',
-   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\urllib\\__init__.py',
-   'PYMODULE'),
-  ('string',
-   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\string.py',
+   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
    'PYMODULE'),
   ('__future__',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\__future__.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.markers',
+  ('pkg_resources._vendor.packaging._structures',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
+   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
    'PYMODULE'),
   ('pkg_resources._vendor.pyparsing',
    'c:\\users\\mlobbes\\documents\\tabellen '
@@ -80,6 +65,9 @@
    'PYMODULE'),
   ('unittest.case',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\unittest\\case.py',
+   'PYMODULE'),
+  ('contextlib',
+   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\contextlib.py',
    'PYMODULE'),
   ('unittest.async_case',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\unittest\\async_case.py',
@@ -147,6 +135,9 @@
   ('asyncio.staggered',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\asyncio\\staggered.py',
    'PYMODULE'),
+  ('typing',
+   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\typing.py',
+   'PYMODULE'),
   ('asyncio.tasks',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\asyncio\\tasks.py',
    'PYMODULE'),
@@ -207,8 +198,14 @@
   ('email._parseaddr',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\email\\_parseaddr.py',
    'PYMODULE'),
+  ('urllib.parse',
+   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\urllib\\parse.py',
+   'PYMODULE'),
   ('email._encoded_words',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\email\\_encoded_words.py',
+   'PYMODULE'),
+  ('urllib',
+   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\urllib\\__init__.py',
    'PYMODULE'),
   ('email.header',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\email\\header.py',
@@ -582,21 +579,20 @@
   ('copy',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\copy.py',
    'PYMODULE'),
+  ('string',
+   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\string.py',
+   'PYMODULE'),
   ('pkg_resources._vendor',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.specifiers',
+  ('pkg_resources._vendor.packaging.requirements',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
+   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging',
+  ('pkg_resources._vendor.packaging.markers',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging._structures',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
+   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
    'PYMODULE'),
   ('pkg_resources._vendor.packaging.tags',
    'c:\\users\\mlobbes\\documents\\tabellen '
@@ -653,29 +649,33 @@
   ('distutils.errors',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\distutils\\errors.py',
    'PYMODULE'),
+  ('pkg_resources._vendor.packaging.version',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
+   'PYMODULE'),
   ('pkg_resources._vendor.appdirs',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging._compat',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_compat.py',
    'PYMODULE'),
   ('pkg_resources._vendor.packaging.utils',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.version',
+  ('pkg_resources._vendor.packaging._compat',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
+   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_compat.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.__about__',
+  ('pkg_resources._vendor.packaging.specifiers',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
    'PYMODULE'),
   ('pkg_resources._vendor.packaging._typing',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_typing.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
    'PYMODULE'),
   ('sysconfig',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\sysconfig.py',
@@ -744,29 +744,14 @@
   ('pathlib',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\pathlib.py',
    'PYMODULE'),
-  ('tracemalloc',
-   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\tracemalloc.py',
-   'PYMODULE'),
   ('_py_abc',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\_py_abc.py',
    'PYMODULE'),
   ('stringprep',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\stringprep.py',
    'PYMODULE'),
-  ('os',
-   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\os.py',
-   'PYMODULE'),
-  ('pandas',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\pandas\\__init__.py',
-   'PYMODULE'),
-  ('pandas._libs.tslibs',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\pandas\\_libs\\tslibs\\__init__.py',
-   'PYMODULE'),
-  ('pandas._libs.window',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\pandas\\_libs\\window\\__init__.py',
+  ('tracemalloc',
+   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\tracemalloc.py',
    'PYMODULE'),
   ('numpy',
    'c:\\users\\mlobbes\\documents\\tabellen '
@@ -1490,6 +1475,21 @@
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\numpy\\_globals.py',
    'PYMODULE'),
+  ('os',
+   'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\os.py',
+   'PYMODULE'),
+  ('pandas',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\pandas\\__init__.py',
+   'PYMODULE'),
+  ('pandas._libs.window',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\pandas\\_libs\\window\\__init__.py',
+   'PYMODULE'),
+  ('pandas._libs.tslibs',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\pandas\\_libs\\tslibs\\__init__.py',
+   'PYMODULE'),
   ('pandas._version',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\pandas\\_version.py',
@@ -1850,54 +1850,6 @@
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\lxml\\__init__.py',
    'PYMODULE'),
-  ('lxml.html._diffcommand',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\html\\_diffcommand.py',
-   'PYMODULE'),
-  ('lxml.usedoctest',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\usedoctest.py',
-   'PYMODULE'),
-  ('lxml.html._html5builder',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\html\\_html5builder.py',
-   'PYMODULE'),
-  ('lxml.html.defs',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\html\\defs.py',
-   'PYMODULE'),
-  ('lxml.html._setmixin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\html\\_setmixin.py',
-   'PYMODULE'),
-  ('lxml.html.html5parser',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\html\\html5parser.py',
-   'PYMODULE'),
-  ('lxml.html.ElementSoup',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\html\\ElementSoup.py',
-   'PYMODULE'),
-  ('lxml.html.formfill',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\html\\formfill.py',
-   'PYMODULE'),
-  ('lxml.html.soupparser',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\html\\soupparser.py',
-   'PYMODULE'),
-  ('lxml.isoschematron',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\isoschematron\\__init__.py',
-   'PYMODULE'),
-  ('lxml.includes.libexslt',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\includes\\libexslt\\__init__.py',
-   'PYMODULE'),
-  ('lxml.html.builder',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\html\\builder.py',
-   'PYMODULE'),
   ('lxml.ElementInclude',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\lxml\\ElementInclude.py',
@@ -1906,37 +1858,85 @@
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\lxml\\cssselect.py',
    'PYMODULE'),
-  ('lxml.includes.libxslt',
+  ('lxml.html.html5parser',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\includes\\libxslt\\__init__.py',
+   'script\\venv\\lib\\site-packages\\lxml\\html\\html5parser.py',
    'PYMODULE'),
-  ('lxml.html.usedoctest',
+  ('lxml.html._html5builder',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\html\\usedoctest.py',
-   'PYMODULE'),
-  ('lxml.includes.extlibs',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\includes\\extlibs\\__init__.py',
-   'PYMODULE'),
-  ('lxml.includes.libxml',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\includes\\libxml\\__init__.py',
-   'PYMODULE'),
-  ('lxml.doctestcompare',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\doctestcompare.py',
-   'PYMODULE'),
-  ('lxml.pyclasslookup',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\lxml\\pyclasslookup.py',
+   'script\\venv\\lib\\site-packages\\lxml\\html\\_html5builder.py',
    'PYMODULE'),
   ('lxml.html',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\lxml\\html\\__init__.py',
    'PYMODULE'),
+  ('lxml.html.soupparser',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\html\\soupparser.py',
+   'PYMODULE'),
+  ('lxml.usedoctest',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\usedoctest.py',
+   'PYMODULE'),
+  ('lxml.isoschematron',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\isoschematron\\__init__.py',
+   'PYMODULE'),
+  ('lxml.html.usedoctest',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\html\\usedoctest.py',
+   'PYMODULE'),
+  ('lxml.doctestcompare',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\doctestcompare.py',
+   'PYMODULE'),
+  ('lxml.html._diffcommand',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\html\\_diffcommand.py',
+   'PYMODULE'),
   ('lxml.includes',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\lxml\\includes\\__init__.py',
+   'PYMODULE'),
+  ('lxml.html.ElementSoup',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\html\\ElementSoup.py',
+   'PYMODULE'),
+  ('lxml.html.builder',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\html\\builder.py',
+   'PYMODULE'),
+  ('lxml.html.formfill',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\html\\formfill.py',
+   'PYMODULE'),
+  ('lxml.pyclasslookup',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\pyclasslookup.py',
+   'PYMODULE'),
+  ('lxml.includes.libexslt',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\includes\\libexslt\\__init__.py',
+   'PYMODULE'),
+  ('lxml.includes.extlibs',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\includes\\extlibs\\__init__.py',
+   'PYMODULE'),
+  ('lxml.html._setmixin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\html\\_setmixin.py',
+   'PYMODULE'),
+  ('lxml.includes.libxml',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\includes\\libxml\\__init__.py',
+   'PYMODULE'),
+  ('lxml.html.defs',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\html\\defs.py',
+   'PYMODULE'),
+  ('lxml.includes.libxslt',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\lxml\\includes\\libxslt\\__init__.py',
    'PYMODULE'),
   ('xml.dom.minidom',
    'C:\\Users\\mlobbes\\AppData\\Local\\Programs\\Python\\Python38\\lib\\xml\\dom\\minidom.py',
@@ -3868,13 +3868,49 @@
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\PIL\\Image.py',
    'PYMODULE'),
-  ('PIL.BufrStubImagePlugin',
+  ('PIL.EpsImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\BufrStubImagePlugin.py',
+   'script\\venv\\lib\\site-packages\\PIL\\EpsImagePlugin.py',
    'PYMODULE'),
   ('PIL.ImageFile',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\PIL\\ImageFile.py',
+   'PYMODULE'),
+  ('PIL.FliImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\FliImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.SpiderImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\SpiderImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.DdsImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\DdsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.McIdasImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\McIdasImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FitsStubImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\FitsStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MicImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\MicImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XVThumbImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\XVThumbImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GbrImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\GbrImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PcdImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\PcdImagePlugin.py',
    'PYMODULE'),
   ('PIL.PdfImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
@@ -3888,9 +3924,77 @@
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\PIL\\ImageSequence.py',
    'PYMODULE'),
+  ('PIL.GribStubImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\GribStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.DcxImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\DcxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PsdImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\PsdImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IptcImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\IptcImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.BufrStubImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\BufrStubImagePlugin.py',
+   'PYMODULE'),
   ('PIL.CurImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\PIL\\CurImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Jpeg2KImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\Jpeg2KImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FpxImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\FpxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MpoImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\MpoImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MspImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\MspImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PcxImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\PcxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XpmImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\XpmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.TgaImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\TgaImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ImtImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\ImtImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ImImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\ImImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MpegImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\MpegImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.WebPImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\WebPImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.SgiImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\SgiImagePlugin.py',
    'PYMODULE'),
   ('PIL.IcnsImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
@@ -3900,145 +4004,41 @@
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\PIL\\features.py',
    'PYMODULE'),
-  ('PIL.SgiImagePlugin',
+  ('PIL.BlpImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\SgiImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.EpsImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\EpsImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.WebPImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\WebPImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.MicImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\MicImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.XVThumbImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\XVThumbImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.Hdf5StubImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\Hdf5StubImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.ImtImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\ImtImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.PixarImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\PixarImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.IptcImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\IptcImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.GribStubImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\GribStubImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.FtexImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\FtexImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.FliImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\FliImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.MspImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\MspImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.PcdImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\PcdImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.SpiderImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\SpiderImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.PcxImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\PcxImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.WmfImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\WmfImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.ImImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\ImImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.McIdasImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\McIdasImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.TgaImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\TgaImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.PsdImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\PsdImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.IcoImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\IcoImagePlugin.py',
+   'script\\venv\\lib\\site-packages\\PIL\\BlpImagePlugin.py',
    'PYMODULE'),
   ('PIL.SunImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\PIL\\SunImagePlugin.py',
    'PYMODULE'),
-  ('PIL.MpegImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\MpegImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.DcxImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\DcxImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.GbrImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\GbrImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.Jpeg2KImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\Jpeg2KImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.DdsImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\DdsImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.FitsStubImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\FitsStubImagePlugin.py',
-   'PYMODULE'),
-  ('PIL.XpmImagePlugin',
-   'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\XpmImagePlugin.py',
-   'PYMODULE'),
   ('PIL.PalmImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\PIL\\PalmImagePlugin.py',
    'PYMODULE'),
-  ('PIL.MpoImagePlugin',
+  ('PIL.Hdf5StubImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\MpoImagePlugin.py',
+   'script\\venv\\lib\\site-packages\\PIL\\Hdf5StubImagePlugin.py',
    'PYMODULE'),
-  ('PIL.FpxImagePlugin',
+  ('PIL.IcoImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\FpxImagePlugin.py',
+   'script\\venv\\lib\\site-packages\\PIL\\IcoImagePlugin.py',
    'PYMODULE'),
-  ('PIL.BlpImagePlugin',
+  ('PIL.WmfImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
-   'script\\venv\\lib\\site-packages\\PIL\\BlpImagePlugin.py',
+   'script\\venv\\lib\\site-packages\\PIL\\WmfImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FtexImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\FtexImagePlugin.py',
    'PYMODULE'),
   ('PIL.XbmImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
    'script\\venv\\lib\\site-packages\\PIL\\XbmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PixarImagePlugin',
+   'c:\\users\\mlobbes\\documents\\tabellen '
+   'script\\venv\\lib\\site-packages\\PIL\\PixarImagePlugin.py',
    'PYMODULE'),
   ('PIL.TiffImagePlugin',
    'c:\\users\\mlobbes\\documents\\tabellen '
