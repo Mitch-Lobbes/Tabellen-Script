@@ -3,6 +3,8 @@ from tkinter import ttk
 from PIL import ImageTk, Image
 import Vraag2
 import numpy as np
+import pandas as pd
+from tkscrolledframe import ScrolledFrame
 
 
 class UI:
@@ -20,11 +22,14 @@ class UI:
         self._boolean = False
         self._kvs = 0
 
+        self._background_vars = list()
+
         self._temp_dict = {}
         self._temp_dict2 = {}
         self._temp_dict3 = {}
 
         self.onthouden = []
+        self.data = pd.DataFrame()
 
     def ask_path(self) -> str:
         picture = Image.open("MWM2WIT.png")
@@ -241,12 +246,22 @@ class UI:
         return names
 
     def show_categories(self, event):
+
         current_x, current_y = 10, 75
 
         if event.widget.get():
             self._kv = event.widget.get()
+            if self._kv in [var[1].split(" ")[2] for var in self._background_vars]:
+                for v in self._background_vars:
+                    if v[1].split(" ")[2] == self._kv:
+                        Vraag2.Vraag('AV', f"{self._kv}_KV", f"{self._kv}_KV", v[2].split("'")[1::2])
+                        break
 
-        answer_list = self._syntax[self._kv].antwoorden
+        if self._kv in self._syntax:
+            answer_list = self._syntax[self._kv].antwoorden
+        else:
+            answer_list = self._data[self._kv].unique()
+
         Label(self._root, text=f"{'Categorieen:'}", bg='#1fbcee', fg='white', font="Trebuchet").place(x=current_x,
                                                                                                       y=current_y)
         current_y = current_y + 150
@@ -279,7 +294,9 @@ class UI:
         #         self._temp_dict2[k] = v.get()
         self._destroy_widgets()
 
-    def specify_kv2(self, number: int, answers: list):
+    def specify_kv2(self, number: int, answers: list, backvar: list, data: pd.DataFrame()):
+        self._data = data
+        self._background_vars = backvar
 
         self._temp_dict = {}
         self._temp_dict2 = {}

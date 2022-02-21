@@ -16,8 +16,8 @@ class LabelParser:
         self._find_mr_questions()
         self._check_question_type()
 
-        # for k, v in Vraag.syntax.items():
-        #     print(k, v.soort)
+        #for k, v in Vraag.syntax.items():
+        #    print(k, v.soort)
 
         return self._background_variables
 
@@ -99,7 +99,8 @@ class LabelParser:
             elif i[1][3].split("'")[1::2][0] == '0' and i[1][3].split("'")[1::2][-1] == '10':
                 Vraag('NPS', i[1][0].split(" ")[2], i[1][0].split("'")[1::2][0], i[1][3].split("'")[1::2])
 
-            elif '_' in i[1][0]:
+            elif '_' in i[1][0].split("'")[0]:
+                # print(i[1][0])
                 Vraag('Schaal', i[1][0].split(" ")[2], i[1][0].split("'")[1::2][0], i[1][3].split("'")[1::2])
 
             elif i[1][3].split("'")[1::2][0] == '1' and i[1][3].split("'")[1::2][1] == '2':

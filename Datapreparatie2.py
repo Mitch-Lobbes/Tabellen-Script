@@ -31,7 +31,8 @@ class DataPreparation:
         return self._data, self._rejections_idx
 
     def _read_file(self, filename: str) -> None:
-        self._data = pd.read_csv(filename, sep=";").replace([-99, '-99'], np.nan)
+        #self._data = pd.read_csv(filename, sep=";").replace([-99, '-99'], np.nan)
+        self._data = pd.read_csv(filename, sep=";")
 
     def _time_check(self) -> None:
 
@@ -50,23 +51,26 @@ class DataPreparation:
     def _scale_check(self):
         self._data = self._data.drop(columns=self._data.columns[0:8], axis=1)
         scale_questions = [c for c in self._data.columns if c in self._syntax and self._syntax[c].soort == 'Schaal']
-        scale_numbers = [re.search('V(.*)_', question).group(1) for question in scale_questions]
-        counter = list(Counter(scale_numbers).values())
+        if scale_questions:
+            scale_numbers = [re.search('V(.*)_', question).group(1) for question in scale_questions]
+            counter = list(Counter(scale_numbers).values())
 
-        listed_scale_questions = [list(islice(iter(scale_questions), elem)) for elem in counter]
+            listed_scale_questions = [list(islice(iter(scale_questions), elem)) for elem in counter]
 
-        standard_devs = []
+            standard_devs = []
 
-        for questions in listed_scale_questions:
-            temp_dict = {}
-            answer = self._syntax[questions[0]].antwoorden
+            for questions in listed_scale_questions:
+                temp_dict = {}
+                answer = self._syntax[questions[0]].antwoorden
 
-            for index, value in enumerate(answer):
-                temp_dict[value] = index
+                for index, value in enumerate(answer):
+                    temp_dict[value] = index
 
-            df = self._data.applymap(lambda s: temp_dict.get(s) if s in temp_dict else s)
-            standard_devs.append(df[questions].std(axis=1))
+                df = self._data.applymap(lambda s: temp_dict.get(s) if s in temp_dict else s)
+                standard_devs.append(df[questions].std(axis=1))
 
-        dev_df = pd.concat(standard_devs, axis=1)
-        dev_df = list(dev_df.std(axis=1))
-        self._straight_liners_idx = [idx for idx, dev in enumerate(dev_df) if dev == 0]
+            dev_df = pd.concat(standard_devs, axis=1)
+            dev_df = list(dev_df.std(axis=1))
+            self._straight_liners_idx = [idx for idx, dev in enumerate(dev_df) if dev == 0]
+        else:
+            self._straight_liners_idx = []

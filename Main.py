@@ -22,7 +22,7 @@ import numpy as np
 class Main:
     pd.set_option('display.max_columns', 500)
 
-    # Create new executable through: pyinstaller --onefile -w Main.py
+    # pyinstaller - -onefile - w - -icon = favicon.ico Main.py
 
     def __init__(self):
 
@@ -86,20 +86,51 @@ class Main:
         self._number_kvs = self._UI.ask_for_kv()
 
         for i in range(self._number_kvs):
-            temp_dict2, q = self._UI.specify_kv2(number=i, answers=self._data.columns)
+            temp_dict2, q = self._UI.specify_kv2(number=i,
+                                                 answers=self._data.columns,
+                                                 backvar=self._background_vars,
+                                                 data=self._data)
             new_name = f'{q}_KV'
+
             self._kvs.append(new_name)
+
             self._data[new_name] = self._data[q].map(temp_dict2)
-            Vraag2.Vraag(self._syntax[q].soort, new_name, self._syntax[q].vraagtekst, list(set(temp_dict2.values())))
+
+            # if q in [var[1].split(" ")[2] for var in self._background_vars]:
+            #     for v in self._background_vars:
+            #         if v[1].split(" ")[2] == q:
+            #             Vraag2.Vraag('AV', new_name, new_name, v[2].split("'")[1::2])
+            #             print(self._syntax[new_name].soort)
+            #             print(self._syntax[new_name].label)
+            #             print(self._syntax[new_name].vraagtekst)
+            #             print(self._syntax[new_name].antwoorden)
+            #             break
+            # else:
+
+            #Vraag2.Vraag(self._syntax[q].soort, new_name, self._syntax[q].vraagtekst, list(set(temp_dict2.values())))
+
+            if q in self._syntax:
+                Vraag2.Vraag(self._syntax[q].soort, new_name, self._syntax[q].vraagtekst, list(set(temp_dict2.values())))
+            else:
+                Vraag2.Vraag(q, new_name, q, list(set(temp_dict2.values())))
+
+
+
+            # for var in self._background_vars:
+            #     if var[1].split(" ")[2] == q:
+            #         Vraag2.Vraag('AV', new_name, new_name, var[2].split("'")[1::2])
+            #
+            # Vraag2.Vraag(self._syntax[q].soort, new_name, self._syntax[q].vraagtekst, list(set(temp_dict2.values())))
 
         self._kvs_names = self._UI.name_kv()
 
-        for kv in self._kvs:
-            for var in self._background_vars:
-                if var[1].split(" ")[2] == kv:
-                    Vraag2.Vraag('AV', kv, kv, var[2].split("'")[1::2])
+        # for kv in self._kvs:
+        #     for var in self._background_vars:
+        #         if var[1].split(" ")[2] == kv:
+        #             Vraag2.Vraag('AV', kv, kv, var[2].split("'")[1::2])
 
         print("Creating Tabellenboek.xlsx....")
+        print(self._kvs)
 
         self._create_tables()
         self._step2.run(dfs=self._dataframe_list, names=self._titles, kvs=self._kvs, path_name=self._directory,
